@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "create-pyapp"
+requires-python = ">=3.10"
+version = "0.1.0"
+readme = "README.md"
+dependencies = [ "click>=8.0" ]
+
+[project.optional-dependencies]
+dev = ["pip-tools", "pytest", "toml-cli"]
+
+[tool.setuptools]
+packages.find.exclude = ["tests*"]
+include-package-data = false
+
+[project.scripts]
+create-pyapp = "create_pyapp.cli:main"

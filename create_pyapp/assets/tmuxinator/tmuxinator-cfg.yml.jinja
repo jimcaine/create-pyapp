@@ -1,0 +1,9 @@
+name: {project_name}
+root: {project_path}
+
+windows:
+   - editor:
+       layout: 99e1,233x56,0,0[136x56,0,0,51,96x56,137,0,52]
+       panes:
+         - source .env && source .venv/bin/activate && nvim
+         - source .env && source .venv/bin/activate && tree .
