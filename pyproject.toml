@@ -14,7 +14,7 @@ dev = ["pip-tools", "pytest", "toml-cli"]
 
 [tool.setuptools]
 packages.find.exclude = ["tests*"]
-include-package-data = false
+include-package-data = true
 
 [project.scripts]
 create-pyapp = "create_pyapp.cli:main"
