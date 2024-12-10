@@ -1,5 +1,6 @@
 PROJECT_NAME := $(shell sed -n 's/^name = "\(.*\)"/\1/p' pyproject.toml)
 VERSION := $(shell sed -n 's/^version = "\(.*\)"/\1/p' pyproject.toml)
+CURRENT_BRANCH := $(shell git branch --show-current)
 
 about:
 	@echo "PROJECT_NAME: $(PROJECT_NAME)"
