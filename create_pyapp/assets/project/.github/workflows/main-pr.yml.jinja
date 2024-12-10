@@ -36,7 +36,7 @@ jobs:
           git merge origin/main --no-edit || true
           git push origin dev
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
 
       - name: Increment patch version
         run: make increment-patch-version
@@ -49,4 +49,4 @@ jobs:
           git commit -m "cicd: bump patch version"
           git push origin dev
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}

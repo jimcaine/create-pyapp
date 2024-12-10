@@ -3,6 +3,7 @@ from .ProjectFileScope import ProjectFileScope
 from pathlib import Path
 from importlib import resources
 from typing import Dict, Any
+import jinja2
 from dataclasses import dataclass
 import logging
 
@@ -34,14 +35,15 @@ class ProjectFile:
         self.__dict__[name] = value
 
     @property
-    def template(self) -> str:
+    def template(self) -> jinja2.Template:
         """Read a template from the resources.
 
         :return: The contents of the template.
         """
         resource_path = resources.files(self.scope.module_path)
         file_path = resource_path / (self.template_path)
-        return file_path.read_text()
+        text = file_path.read_text()
+        return jinja2.Template(text)
 
     def write_template(self, project_path: Path | None = None) -> None:
         """Write a template from the resources.
@@ -54,8 +56,12 @@ class ProjectFile:
         else:
             file_path = project_path / self.relative_path
 
+        logger.info("Rendering template")
+        rendered = self.template.render(**self.params)
+
         logger.info(f"Creating directory: {file_path.parent}")
         file_path.parent.mkdir(parents=True, exist_ok=True)
 
         logger.info(f"Writing file: {file_path}")
-        file_path.write_text(self.template.format(**self.params))
+        with open(file_path, "w") as f:
+            f.write(rendered)

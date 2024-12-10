@@ -11,7 +11,7 @@ increment-patch-version:
 	@CURRENT_VERSION=$$(toml get --toml-path pyproject.toml project.version) ; \
 	IFS='.' read -r major minor patch <<< "$$CURRENT_VERSION" ; \
 	patch=$$((patch + 1)) ; \
-	{% raw %}NEW_VERSION="$${major}.$${minor}.$$patch" ; \{% endraw %}
+	NEW_VERSION="$${major}.$${minor}.$$patch" ; \
 	toml set --toml-path pyproject.toml project.version "$$NEW_VERSION" ; \
 	echo "Version updated to $$NEW_VERSION"
 
