@@ -25,6 +25,9 @@ def create_python_app(
     """
     project_path.mkdir(parents=True, exist_ok=True)
 
+    src_path = project_path / project_name
+    src_path.mkdir(parents=True, exist_ok=True)
+
     project_files = [
         ProjectFile(
             scope=ProjectFileScope.PROJECT,
@@ -48,6 +51,18 @@ def create_python_app(
             scope=ProjectFileScope.PROJECT,
             template_path=".gitignore.jinja",
             relative_path=".gitignore",
+            params={},
+        ),
+        ProjectFile(
+            scope=ProjectFileScope.PROJECT,
+            template_path="Makefile.jinja",
+            relative_path="Makefile",
+            params={},
+        ),
+        ProjectFile(
+            scope=ProjectFileScope.PROJECT,
+            template_path="tests/__init__.py.jinja",
+            relative_path="tests/__init__.py",
             params={},
         ),
     ]
