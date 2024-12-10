@@ -14,5 +14,13 @@ increment-patch-version:
 	toml set --toml-path pyproject.toml project.version "$$NEW_VERSION" ; \
 	echo "Version updated to $$NEW_VERSION"
 
+pr: test
+	@echo "Creating PR"
+	@gh pr create --base main --head ${CURRENT_BRANCH} --title "Release: ${VERSION}"
+
+pr-dev: test
+	@echo "Creating PR"
+	@gh pr create --base dev --head ${CURRENT_BRANCH} --title "${CURRENT_BRANCH}"
+
 test:
 	@pytest -s -v tests --log-cli-level=INFO
