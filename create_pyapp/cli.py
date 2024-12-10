@@ -18,13 +18,28 @@ params = {
 
 
 @click.command()
-@click.argument('project_name', type=str)
-@click.option('--project-path', **params['project_path'])
-@click.option('--tmuxinator', **params['tmuxinator'])
+@click.argument("project_name", type=str)
+@click.option(
+    "--project-path",
+    type=Path,
+    required=False,
+    help="The path to create the project",
+)
+@click.option(
+    "--tmuxinator",
+    is_flag=True,
+    help="Create a tmuxinator file",
+)
+@click.option(
+    "--gha",
+    is_flag=True,
+    help="Create a GitHub Actions workflow",
+)
 def main(
     project_name: str,
     project_path: str | None,
     tmuxinator: bool,
+    gha: bool,
 ):
     """Create a Python project"""
     if project_path:
@@ -33,4 +48,9 @@ def main(
         project_path_ = Path.cwd() / project_name
     click.echo(f'Project path: {project_path_}')
 
-    create_python_app(project_name, project_path_, tmuxinator=tmuxinator)
+    create_python_app(
+        project_name=project_name,
+        project_path=project_path_,
+        tmuxinator=tmuxinator,
+        github_actions=gha,
+    )

@@ -14,6 +14,7 @@ def create_python_app(
     git_init: bool = True,
     virtualenv: bool = True,
     tmuxinator: bool = False,
+    github_actions: bool = False,
 ) -> None:
     """Bootstrap a new Python project.
 
@@ -66,6 +67,16 @@ def create_python_app(
             params={},
         ),
     ]
+
+    if github_actions:
+        project_files.append(
+            ProjectFile(
+                scope=ProjectFileScope.PROJECT,
+                template_path=".github/workflows/main-pr.yml.jinja",
+                relative_path=".github/workflows/main-pr.yml",
+                params={},
+            )
+        )
 
     for file in project_files:
         logger.info(f"Writing file: {file}")
