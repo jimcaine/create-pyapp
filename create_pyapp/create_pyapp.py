@@ -28,6 +28,8 @@ def create_python_app(
 
     src_path = project_path / project_name
     src_path.mkdir(parents=True, exist_ok=True)
+    init_file = src_path / "__init__.py"
+    init_file.touch()
 
     project_files = [
         ProjectFile(
