@@ -5,12 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "create-pyapp"
 requires-python = ">=3.10"
-version = "0.1.0"
+version = "0.1.1"
 readme = "README.md"
 dependencies = [ "click>=8.0" ]
 
 [project.optional-dependencies]
 dev = ["pip-tools", "pytest", "toml-cli"]
+
+all = ["pip-tools", "pytest", "toml-cli"]
 
 [tool.setuptools]
 packages.find.exclude = ["tests*"]

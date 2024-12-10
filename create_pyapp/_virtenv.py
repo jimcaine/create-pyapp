@@ -13,5 +13,5 @@ def create_virtualenv(project_path: Path) -> Path:
     """
     venv_path = project_path / ".venv"
     logger.info(f"Creating virtual environment in {venv_path}")
-    os.system(f"python -m venv {venv_path}")
+    os.system(f"uv venv {venv_path}")
     return venv_path / "bin" / "python"
