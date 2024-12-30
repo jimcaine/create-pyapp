@@ -1,31 +1,36 @@
-# create-pyapp
-Utilities for quickly bootstrapping new python packages.
+# crappy
+Command line interface for quickly bootstrapping new python packages.
 
-The below command will create a new directory in the current working directory and do the following:
-1. Create a new README.md file with your project name.
-2. Create pyproject.toml file with your project name and some defaults.
-3. Create .gitignore file with some defaults.
-4. Create a new python virtual environment in the project directory .venv.
-5. Active this virtual environment.
-6. If tmuxinator is true, a new tmuxinator yaml file will be created in ~/.config/tmuxinator to easily bootstrap a new tmux environment.
+This project is highly opinionated and is designed as a personal tool to quickly bootstrap new projects to my liking.
 
+## Installation
 ```bash
-create-pyapp my-app --tmuxinator true
+pip install git+https://www.github.com/jimcaine/create-pyapp
+```
+
+## Usage
+```bash
+crappy my-app --tmuxinator --gha
 ```
 
 The project directory layout will look like the following
 ```text
-./my-app
-├── .venv
+./my-app/
+├── .env
+├── .github/
+│   ├── workflows/
+│       ├── pr-main.yml
+├── .git/
+├── .venv/
 ├── README.md
-├── project_name
+├── project_name/
 │   ├── __init__.py
 ├── pyproject.toml
-├── tests
-│   └── unit
+├── tests/
+│   └── unit/
 │       ├── __init__.py
 
-~/.config
-├── tmuxinator
+~/.config/
+├── tmuxinator/
 │   └── my-app.yml
 ```
