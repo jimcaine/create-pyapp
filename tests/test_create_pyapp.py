@@ -1,7 +1,7 @@
 import os
 import shutil
 from pathlib import Path
-from create_pyapp import create_python_app
+from crappy import create_python_app
 
 
 def test_create_python_app():
