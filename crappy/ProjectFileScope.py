@@ -32,8 +32,8 @@ class ProjectFileScope(Enum):
         :return: The path to the scope directory.
         """
         scope_map = {
-            self.PROJECT: 'create_pyapp.assets.project',
-            self.TMUXINATOR: 'create_pyapp.assets.tmuxinator',
+            self.PROJECT: 'crappy.assets.project',
+            self.TMUXINATOR: 'crappy.assets.tmuxinator',
         }
 
         return scope_map[self]

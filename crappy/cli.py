@@ -1,6 +1,6 @@
 import click
 from pathlib import Path
-from .create_pyapp import create_python_app
+from crappy import create_python_app
 
 params = {
     "project_path": {
