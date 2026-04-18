@@ -11,10 +11,15 @@ def initialize_git(project_path: Path) -> None:
     :param project_path: The path to the project directory.
     """
     logger.info(f"Initializing git repository in {project_path}")
+    command = ["git", "init", str(project_path)]
     result = subprocess.run(
-        ["git", "init", str(project_path)],
+        command,
         capture_output=True,
         text=True,
     )
     if result.returncode != 0:
-        raise RuntimeError(f"Failed to initialize git: {result.stderr}")
+        diagnostics = result.stderr.strip() or result.stdout.strip() or "No output captured."
+        raise RuntimeError(
+            f"Failed to initialize git with command {' '.join(command)!r} "
+            f"(exit code {result.returncode}): {diagnostics}"
+        )
